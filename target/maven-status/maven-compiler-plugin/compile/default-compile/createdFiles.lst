@@ -1,0 +1,5 @@
+com\blastfurnace\otr\rest\adapter\AudioDataAdapter.class
+com\blastfurnace\otr\rest\adapter\AudioDataAdapterImpl.class
+com\blastfurnace\otr\rest\AudioDataRestController.class
+com\blastfurnace\otr\servlet\FileServer.class
+com\blastfurnace\otr\FileServiceApplication.class
