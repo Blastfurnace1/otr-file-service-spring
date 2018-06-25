@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.HashMap;
 import java.util.Optional;
 
 import javax.servlet.ServletConfig;
@@ -20,6 +21,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.blastfurnace.otr.model.AudioFileProperties;
 import com.blastfurnace.otr.respository.AudioRepository;
 import com.blastfurnace.otr.util.Utils;
+import com.blastfurnace.otr.util.DriveMapper;
 
 /**
  * Servlet implementation class FileServer
@@ -28,13 +30,26 @@ import com.blastfurnace.otr.util.Utils;
 public class FileServer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
+	private static final String NO_DRIVE = "NO_DRIVE";
+	private static HashMap<String, String> mappedDrives;
+	
 	@Autowired
     private AudioRepository repository;
+	
+	private String getDrive(String volume) {
+		if (mappedDrives.containsKey(volume)) {
+			return mappedDrives.get(volume);
+		} else {
+			return NO_DRIVE;
+		}
+	}
 
 	public void init(ServletConfig config) throws ServletException {
 		super.init(config);
 		SpringBeanAutowiringSupport.processInjectionBasedOnServletContext(this,
 				config.getServletContext());
+		
+		mappedDrives = DriveMapper.getDriveMappings();
 	}
 
     /**
@@ -45,7 +60,7 @@ public class FileServer extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-    /** Get the name/location of the file. */
+    /** Get the audio file record for the file id. */
     private AudioFileProperties getFile(HttpServletRequest request) {
     	String id = request.getParameter("id");
         long fileId = Utils.getLong(id);
@@ -55,12 +70,15 @@ public class FileServer extends HttpServlet {
         return file.get();
     }
     
-    private String getFileName(AudioFileProperties member) {
-    if (member == null) {
-        return "";
-    }
+    /** Get the name/location of the file. */
+    private String getFileName(String drive, AudioFileProperties member) {
+	    if (member == null) {
+	        return "";
+	    }
+	    
+	    // TODO: Prepend drive to directory and file name
     
-     return member.getDirectory() + member.getFilename();
+	    return member.getDirectory() + member.getFilename();
     }
     
     /** Output the file to the response. */
@@ -77,13 +95,16 @@ public class FileServer extends HttpServlet {
         out.flush();
     }
     
+    /** get the mime type for the file. */
     private void setMimeType(HttpServletResponse response, AudioFileProperties member) {
     	
+    	// TODO: use the mime type table - build service
     	// You must tell the browser the file type you are going to send
     	// for example application/pdf, text/plain, text/html, image/jpg
     	if (member.getAudioSamplingRate() > 0) {
     		response.setContentType("audio/mpeg");
     	} else {
+    		// download
     		response.setContentType("application/octet-stream");
     	}
     }
@@ -93,9 +114,12 @@ public class FileServer extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-    	
     	AudioFileProperties afp = getFile(request);
-    	String fileName = getFileName(afp);
+    	String drive = getDrive(afp.getDiscId()); 
+    	if (drive == NO_DRIVE) {
+    		throw new WebServerException("Server Volume not available", new Exception("Could not get file"));
+    	}
+    	String fileName = getFileName(drive, afp);
     	System.out.println(fileName);
     	File my_file = new File(fileName);
     	response.setHeader("Content-disposition", "attachment; filename="+ afp.getFilename().replaceAll(" ", "_"));

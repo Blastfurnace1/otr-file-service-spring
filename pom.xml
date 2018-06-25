@@ -27,6 +27,13 @@
     		<scope>system</scope>
     		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/otr-audio-data.jar</systemPath>
 		</dependency>
+		<dependency>
+    		<groupId>com.blastfurnace</groupId>
+    		<artifactId>entagged</artifactId>
+    		<version>1.0</version>
+    		<scope>system</scope>
+    		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/entagged.jar</systemPath>
+		</dependency>
     </dependencies>
 
 

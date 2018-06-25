@@ -1,16 +1,10 @@
 package com.blastfurnace.otr.rest.adapter;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.blastfurnace.otr.model.AudioFileProperties;
-import com.blastfurnace.otr.reflection.ObjectData;
-import com.blastfurnace.otr.reflection.Utils;
-import com.blastfurnace.otr.rest.request.QueryData;
 import com.blastfurnace.otr.rest.response.GenericRestResponse;
 import com.blastfurnace.otr.service.AudioService;
 
