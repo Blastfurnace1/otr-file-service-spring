@@ -127,6 +127,7 @@
         		</plugins>
     		</build>
     	</profile>
+    	
     	<profile>
     		<id>release</id>
     		<activation>
@@ -212,7 +213,7 @@
           					<skipTests>true</skipTests>
           					<layout>WAR</layout>
 							<executable>true</executable>
-							<mainClass>com.blastfurnace.otr.FileServiceApplication</mainClass>
+							<mainClass>com.blastfurnace.otr.Application</mainClass>
         				</configuration>
         				<executions>
 					<execution>

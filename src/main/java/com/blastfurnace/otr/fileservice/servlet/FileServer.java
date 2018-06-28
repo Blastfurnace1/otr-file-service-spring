@@ -1,9 +1,10 @@
-package com.blastfurnace.otr.servlet;
+package com.blastfurnace.otr.fileservice.servlet;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Optional;
 
@@ -18,10 +19,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.server.WebServerException;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
-import com.blastfurnace.otr.model.AudioFileProperties;
-import com.blastfurnace.otr.respository.AudioRepository;
 import com.blastfurnace.otr.util.Utils;
-import com.blastfurnace.otr.util.DriveMapper;
+import com.blastfurnace.otr.data.audiofile.AudioService;
+import com.blastfurnace.otr.data.audiofile.model.AudioFileProperties;
+import com.blastfurnace.otr.fileservice.util.DriveMapper;
 
 /**
  * Servlet implementation class FileServer
@@ -34,7 +35,7 @@ public class FileServer extends HttpServlet {
 	private static HashMap<String, String> mappedDrives;
 	
 	@Autowired
-    private AudioRepository repository;
+    private AudioService service;
 	
 	private String getDrive(String volume) {
 		if (mappedDrives.containsKey(volume)) {
@@ -62,12 +63,19 @@ public class FileServer extends HttpServlet {
 
     /** Get the audio file record for the file id. */
     private AudioFileProperties getFile(HttpServletRequest request) {
+    	AudioFileProperties audio = null;
     	String id = request.getParameter("id");
         long fileId = Utils.getLong(id);
         
-        Optional<AudioFileProperties> file = repository.findById(fileId);
+        audio = service.get(fileId);
+        // update the last requested info if the object is not null
+        if (audio != null) {
+        	audio.setRequestCount(audio.getRequestCount() + 1);
+        	audio.setLastRequested(new Date());
+        	//audio = repository.save(audio);
+        }
         
-        return file.get();
+        return audio;
     }
     
     /** Get the name/location of the file. */
@@ -76,9 +84,10 @@ public class FileServer extends HttpServlet {
 	        return "";
 	    }
 	    
-	    // TODO: Prepend drive to directory and file name
+	    // Prepend drive to directory and file name
+	    String volume = getDrive(member.getDiscId());
     
-	    return member.getDirectory() + member.getFilename();
+	    return volume + member.getDirectory() + member.getFilename();
     }
     
     /** Output the file to the response. */

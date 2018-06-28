@@ -1,5 +1,7 @@
-com\blastfurnace\otr\rest\adapter\AudioDataAdapter.class
-com\blastfurnace\otr\rest\adapter\AudioDataAdapterImpl.class
-com\blastfurnace\otr\rest\AudioDataRestController.class
-com\blastfurnace\otr\servlet\FileServer.class
-com\blastfurnace\otr\FileServiceApplication.class
+com\blastfurnace\otr\fileservice\rest\adapter\FileDataAdapter.class
+com\blastfurnace\otr\fileservice\service\FileServiceHelper.class
+com\blastfurnace\otr\fileservice\rest\adapter\impl\FileDataAdapterImpl.class
+com\blastfurnace\otr\fileservice\servlet\FileServer.class
+com\blastfurnace\otr\fileservice\service\FileDataLoader.class
+com\blastfurnace\otr\fileservice\util\DriveMapper.class
+com\blastfurnace\otr\fileservice\rest\FileServiceRestController.class

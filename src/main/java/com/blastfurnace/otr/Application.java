@@ -12,13 +12,13 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @ServletComponentScan
 @SpringBootApplication
 @EnableAutoConfiguration
-public class FileServiceApplication extends SpringBootServletInitializer {
+public class Application extends SpringBootServletInitializer {
 
-	private static final Logger log = LoggerFactory.getLogger(FileServiceApplication.class);
+	private static final Logger log = LoggerFactory.getLogger(Application.class);
 	
 	public static void main(String[] args) {
 		log.warn("Starting App");
-		SpringApplication.run(FileServiceApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

@@ -1,4 +1,4 @@
-package fileservice;
+package com.blastfurnace.otr.fileservice.service;
 
 import java.io.File;
 import java.util.List;
@@ -8,19 +8,18 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.blastfurnace.otr.model.AudioFileProperties;
-import com.blastfurnace.otr.service.AudioService;
+import com.blastfurnace.otr.data.audiofile.AudioService;
+import com.blastfurnace.otr.data.audiofile.model.AudioFileProperties;
 import com.blastfurnace.otr.util.CSVUtils;
 import com.blastfurnace.otr.util.FileUtils;
 import com.blastfurnace.otr.util.StringUtils;
 
 import entagged.audioformats.*;
-import fileservice.helper.FileServiceHelper;
 
 
-public class AudioDataLoader {
+public class FileDataLoader {
 
-	private static Log log = LogFactory.getLog(AudioDataLoader.class);
+	private static Log log = LogFactory.getLog(FileDataLoader.class);
 	
 	@Autowired
 	private AudioService service;
@@ -38,7 +37,7 @@ public class AudioDataLoader {
 	private Vector<AudioFileProperties> fileProperties = new Vector<AudioFileProperties>();
 	
 	public static void main(String[] args) {
-		AudioDataLoader a = new AudioDataLoader();
+		FileDataLoader a = new FileDataLoader();
 		a.iterateDirectories("E:/");
 	}
 

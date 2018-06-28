@@ -1,4 +1,4 @@
-package fileservice.helper;
+package com.blastfurnace.otr.fileservice.service;
 
 import java.io.File;
 import java.util.List;
@@ -6,7 +6,7 @@ import java.util.List;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
-import com.blastfurnace.otr.model.AudioFileProperties;
+import com.blastfurnace.otr.data.audiofile.model.AudioFileProperties;
 import com.blastfurnace.otr.util.StringUtils;
 
 import entagged.audioformats.AudioFile;

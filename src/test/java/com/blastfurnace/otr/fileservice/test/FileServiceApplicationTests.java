@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.blastfurnace.otr;
+package com.blastfurnace.otr.fileservice.test;
 
 import java.util.Map;
 
@@ -28,10 +28,10 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import com.blastfurnace.otr.model.AudioFileProperties;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.junit.Assert.assertTrue;
@@ -43,6 +43,7 @@ import static org.junit.Assert.assertTrue;
  */
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@ContextConfiguration
 @TestPropertySource(properties = {"management.port=9001", "test.server="})
 public class FileServiceApplicationTests {
 
