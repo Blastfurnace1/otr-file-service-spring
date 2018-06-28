@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Optional;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;

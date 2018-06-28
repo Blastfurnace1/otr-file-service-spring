@@ -1,4 +1,4 @@
-package com.blastfurnace.otr.fileservice.service;
+package com.blastfurnace.otr.fileservice.util;
 
 import java.io.File;
 import java.util.List;
