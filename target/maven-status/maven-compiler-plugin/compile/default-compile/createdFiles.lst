@@ -1,7 +1,11 @@
-com\blastfurnace\otr\fileservice\rest\adapter\FileDataAdapter.class
-com\blastfurnace\otr\fileservice\service\FileServiceHelper.class
-com\blastfurnace\otr\fileservice\rest\adapter\impl\FileDataAdapterImpl.class
+com\blastfurnace\otr\fileservice\service\impl\FileDataServiceImpl.class
+com\blastfurnace\otr\Application.class
 com\blastfurnace\otr\fileservice\servlet\FileServer.class
-com\blastfurnace\otr\fileservice\service\FileDataLoader.class
+com\blastfurnace\otr\servlet\FilePingServlet.class
+com\blastfurnace\otr\fileservice\adapter\FileDataAdapter.class
+com\blastfurnace\otr\fileservice\adapter\impl\FileDataAdapterImpl.class
 com\blastfurnace\otr\fileservice\util\DriveMapper.class
+com\blastfurnace\otr\fileservice\util\FileServiceHelper.class
 com\blastfurnace\otr\fileservice\rest\FileServiceRestController.class
+com\blastfurnace\otr\fileservice\util\FileDataLoader.class
+com\blastfurnace\otr\fileservice\service\FileDataService.class
