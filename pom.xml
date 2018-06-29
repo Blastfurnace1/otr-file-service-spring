@@ -29,6 +29,13 @@
 		</dependency>
 		<dependency>
     		<groupId>com.blastfurnace</groupId>
+    		<artifactId>otr-utilities</artifactId>
+    		<version>1.0</version>
+    		<scope>system</scope>
+    		<systemPath>${project.basedir}/src/main/webapp/WEB-INF/lib/otr-utils.jar</systemPath>
+		</dependency>
+		<dependency>
+    		<groupId>com.blastfurnace</groupId>
     		<artifactId>entagged</artifactId>
     		<version>1.0</version>
     		<scope>system</scope>
@@ -110,9 +117,34 @@
                         <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
                         <resources>
                             <resource>
-                                <directory>C:/workspace/otr-data-services-spring/target</directory>
+                                <directory>C:/workspace/otr-audio-data-spring/target</directory>
                                 <includes>
                                     <include>otr-audio-data.jar</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+           </executions>
+        </plugin>
+        <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+                <execution>
+                    <id>copy-resource-one</id>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+
+                    <configuration>
+                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>C:/workspace/otr-utiliies/target</directory>
+                                <includes>
+                                    <include>otr-utils.jar</include>
                                 </includes>
                             </resource>
                         </resources>
@@ -198,6 +230,56 @@
         			</resource>
     			</resources>
         		<plugins>
+        		 <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+                <execution>
+                    <id>copy-resource-one</id>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+
+                    <configuration>
+                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>C:/workspace/otr-audio-data-spring/target</directory>
+                                <includes>
+                                    <include>otr-audio-data.jar</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+           </executions>
+        </plugin>
+        <plugin>
+            <artifactId>maven-resources-plugin</artifactId>
+            <version>2.7</version>
+            <executions>
+                <execution>
+                    <id>copy-resource-one</id>
+                    <phase>validate</phase>
+                    <goals>
+                        <goal>copy-resources</goal>
+                    </goals>
+
+                    <configuration>
+                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <resources>
+                            <resource>
+                                <directory>C:/workspace/otr-utiliies/target</directory>
+                                <includes>
+                                    <include>otr-utils.jar</include>
+                                </includes>
+                            </resource>
+                        </resources>
+                    </configuration>
+                </execution>
+           </executions>
+        </plugin>
         			<plugin>
 						<groupId>org.apache.maven.plugins</groupId>
 						<artifactId>maven-war-plugin</artifactId>
