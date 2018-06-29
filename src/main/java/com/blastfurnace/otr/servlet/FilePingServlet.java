@@ -30,7 +30,7 @@ public class FilePingServlet extends PingServlet {
 		}
 		
 		
-		return "Status OK";
+		return "File Server - Status OK";
 	}
 
 	public FilePingServlet() {

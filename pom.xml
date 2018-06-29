@@ -102,7 +102,7 @@
         			</resource>
     			</resources>
         		<plugins>
-        		 <plugin>
+        		 	<plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.7</version>
             <executions>
@@ -114,7 +114,7 @@
                     </goals>
 
                     <configuration>
-                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
                         <resources>
                             <resource>
                                 <directory>C:/workspace/otr-audio-data-spring/target</directory>
@@ -139,7 +139,7 @@
                     </goals>
 
                     <configuration>
-                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
                         <resources>
                             <resource>
                                 <directory>C:/workspace/otr-utiliies/target</directory>
@@ -230,7 +230,7 @@
         			</resource>
     			</resources>
         		<plugins>
-        		 <plugin>
+        		 	<plugin>
             <artifactId>maven-resources-plugin</artifactId>
             <version>2.7</version>
             <executions>
@@ -242,7 +242,7 @@
                     </goals>
 
                     <configuration>
-                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
                         <resources>
                             <resource>
                                 <directory>C:/workspace/otr-audio-data-spring/target</directory>
@@ -267,7 +267,7 @@
                     </goals>
 
                     <configuration>
-                        <outputDirectory>C:/workspace/otr-file-service-spring/src/main/webapp/WEB-INF/lib</outputDirectory>
+                        <outputDirectory>${project.basedir}/src/main/webapp/WEB-INF/lib</outputDirectory>
                         <resources>
                             <resource>
                                 <directory>C:/workspace/otr-utiliies/target</directory>
