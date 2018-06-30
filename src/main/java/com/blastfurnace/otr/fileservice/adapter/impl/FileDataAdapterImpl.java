@@ -8,7 +8,7 @@ import com.blastfurnace.otr.fileservice.adapter.FileDataAdapter;
 import com.blastfurnace.otr.fileservice.service.FileDataService;
 import com.blastfurnace.otr.service.response.GenericResponse;
 
-@Component("AudioDataAdapter")
+@Component("FileDataAdapter")
 public class FileDataAdapterImpl implements FileDataAdapter {
 
 	@Autowired

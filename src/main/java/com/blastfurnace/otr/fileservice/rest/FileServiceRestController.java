@@ -19,12 +19,12 @@ import com.blastfurnace.otr.service.response.GenericResponse;
 public class FileServiceRestController {
 
 	@Autowired
-	private FileDataAdapter audioAdapter;
+	private FileDataAdapter fileDataAdapter;
 
     @RequestMapping(value = "/fileExists/{id:[\\d]+}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<GenericResponse<AudioFileProperties>>  get(@PathVariable long  id) {
-    	GenericResponse<AudioFileProperties> g = audioAdapter.get(id);
+    	GenericResponse<AudioFileProperties> g = fileDataAdapter.get(id);
     	ResponseEntity<GenericResponse<AudioFileProperties>> response = new ResponseEntity<GenericResponse<AudioFileProperties>>(g, HttpStatus.OK);
     	return response;
     }
