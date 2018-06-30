@@ -126,14 +126,9 @@
                         </resources>
                     </configuration>
                 </execution>
-           </executions>
-        </plugin>
-        <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.7</version>
-            <executions>
+           
                 <execution>
-                    <id>copy-resource-one</id>
+                    <id>copy-resource-two</id>
                     <phase>validate</phase>
                     <goals>
                         <goal>copy-resources</goal>
@@ -254,14 +249,9 @@
                         </resources>
                     </configuration>
                 </execution>
-           </executions>
-        </plugin>
-        <plugin>
-            <artifactId>maven-resources-plugin</artifactId>
-            <version>2.7</version>
-            <executions>
+           
                 <execution>
-                    <id>copy-resource-one</id>
+                    <id>copy-resource-two</id>
                     <phase>validate</phase>
                     <goals>
                         <goal>copy-resources</goal>
