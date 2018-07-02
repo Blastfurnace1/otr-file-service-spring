@@ -34,7 +34,7 @@
 		<dependency>
     		<groupId>com.blastfurnace</groupId>
     		<artifactId>otr-audio-data</artifactId>
-    		<version>0.2.0</version>
+    		<version>0.1.0</version>
 		</dependency>
 		<dependency>
     		<groupId>com.blastfurnace</groupId>
@@ -54,8 +54,6 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <const.megabyte>1048576</const.megabyte>
-        <utilities.project.dir>C:/workspace/otr-utils</utilities.project.dir>
-        <audio.project.dir>C:/workspace/otr-audio-data-spring</audio.project.dir>
     </properties>
     
     <profiles>
