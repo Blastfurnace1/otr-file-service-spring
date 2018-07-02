@@ -15,7 +15,7 @@ import com.blastfurnace.otr.fileservice.adapter.FileDataAdapter;
 import com.blastfurnace.otr.service.response.GenericResponse;
 
 @RestController
-@RequestMapping("/rest")
+@RequestMapping("/rest/file")
 public class FileServiceRestController {
 
 	@Autowired
