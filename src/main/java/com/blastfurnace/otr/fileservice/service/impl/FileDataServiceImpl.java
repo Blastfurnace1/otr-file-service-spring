@@ -7,7 +7,7 @@ import com.blastfurnace.otr.data.audiofile.AudioService;
 import com.blastfurnace.otr.data.audiofile.model.AudioFileProperties;
 import com.blastfurnace.otr.fileservice.service.FileDataService;
 import com.blastfurnace.otr.service.GenericService;
-import com.blastfurnace.otr.service.response.GenericResponse;
+import com.blastfurnace.otr.service.response.GenericServiceResponse;
 
 @Component("FileDataService")
 public class FileDataServiceImpl implements FileDataService {
@@ -23,7 +23,7 @@ public class FileDataServiceImpl implements FileDataService {
 	
 	
 	@Override
-	public GenericResponse<AudioFileProperties> get(Long id) {
+	public GenericServiceResponse<AudioFileProperties> get(Long id) {
 		return gService.get(id, service);
 	}
 }

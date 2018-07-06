@@ -3,12 +3,18 @@
    <modelVersion>4.0.0</modelVersion>
    <groupId>com.blastfurnace</groupId>
    <artifactId>otr-services-files</artifactId>
-   <version>0.1.0</version>
+   <version>0.2.0</version>
    <parent>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-parent</artifactId>
       <version>2.0.2.RELEASE</version>
    </parent>
+   <distributionManagement>
+      <repository>
+         <id>blastfurnace</id>
+         <url>http://10.0.0.134:8085/artifactory/libs-release-local</url>
+      </repository>
+   </distributionManagement>
    <repositories>
       <repository>
          <id>blastfurnace</id>
@@ -23,23 +29,38 @@
       <dependency>
          <groupId>org.projectlombok</groupId>
          <artifactId>lombok</artifactId>
-         <version>1.16.22</version>
          <scope>provided</scope>
-      </dependency>
-      <dependency>
-         <groupId>com.blastfurnace</groupId>
-         <artifactId>otr-audio-data</artifactId>
-         <version>0.1.0</version>
-      </dependency>
-      <dependency>
-         <groupId>com.blastfurnace</groupId>
-         <artifactId>otr-utils</artifactId>
-         <version>0.1.0</version>
       </dependency>
       <dependency>
          <groupId>com.blastfurnace</groupId>
          <artifactId>entagged</artifactId>
          <version>1.0.0</version>
+      </dependency>
+      <dependency>
+         <groupId>com.blastfurnace</groupId>
+         <artifactId>otr-audio-data</artifactId>
+         <version>0.3.0</version>
+      </dependency>
+      <dependency>
+         <groupId>com.blastfurnace</groupId>
+         <artifactId>otr-audio-data</artifactId>
+         <version>0.3.0</version>
+         <classifier>test</classifier>
+         <type>test-jar</type>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <groupId>com.blastfurnace</groupId>
+         <artifactId>otr-utils</artifactId>
+         <version>0.4.0</version>
+      </dependency>
+      <dependency>
+         <groupId>com.blastfurnace</groupId>
+         <artifactId>otr-utils</artifactId>
+         <version>0.4.0</version>
+         <classifier>test</classifier>
+         <type>test-jar</type>
+         <scope>test</scope>
       </dependency>
    </dependencies>
    <properties>
@@ -49,17 +70,17 @@
       <const.megabyte>1048576</const.megabyte>
    </properties>
    <profiles>
-      <profile>
+       <profile>
          <id>dev</id>
          <activation>
-            <activeByDefault>true</activeByDefault>
+            <activeByDefault>false</activeByDefault>
          </activation>
          <properties>
             <activatedProperties>dev</activatedProperties>
             <server.port.addr>9000</server.port.addr>
             <management.server.port.addr>9001</management.server.port.addr>
             <management.server.address.ip>127.0.0.1</management.server.address.ip>
-            <log.file>${project.basedir}/log/fileServices.log</log.file>
+            <log.file>${project.basedir}/log/EpisodeData.log</log.file>
             <datasource.url>jdbc:mysql://localhost:3306/otr_mp3</datasource.url>
             <datasource.username>otr</datasource.username>
             <datasource.password>otr</datasource.password>
@@ -92,11 +113,20 @@
          <build>
             <resources>
                <resource>
-                  <directory>src/main/resources</directory>
+                  <directory>src/test/resources</directory>
                   <filtering>true</filtering>
                </resource>
             </resources>
             <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-surefire-plugin</artifactId>
+                  <configuration>
+                     <dependenciesToScan>
+                        <dependency>com.blastfurnace:otr-audio-data</dependency>
+                     </dependenciesToScan>
+                  </configuration>
+               </plugin>
                <plugin>
                   <groupId>org.springframework.boot</groupId>
                   <artifactId>spring-boot-maven-plugin</artifactId>
@@ -107,11 +137,12 @@
       <profile>
          <id>release</id>
          <activation>
-            <activeByDefault>false</activeByDefault>
+            <activeByDefault>true</activeByDefault>
          </activation>
          <properties>
-            <packaging>war</packaging>
-            <maven.test.skip>true</maven.test.skip>
+            <packaging>jar</packaging>
+            <maven.test.skip>false</maven.test.skip>
+            <maven.test.skip.exec>true</maven.test.skip.exec>
             <deploy.dir>C:/wildfly-12.0.0.Final/standalone/deployments/</deploy.dir>
             <activatedProperties>release</activatedProperties>
             <log.path>C:/wildfly-12.0.0.Final/standalone/log/</log.path>
@@ -142,12 +173,6 @@
             <dependency>
                <groupId>org.springframework.boot</groupId>
                <artifactId>spring-boot-starter-test</artifactId>
-               <exclusions>
-                  <exclusion>
-                     <groupId>org.apache.tomcat</groupId>
-                     <artifactId>tomcat-jdbc</artifactId>
-                  </exclusion>
-               </exclusions>
                <scope>test</scope>
             </dependency>
             <dependency>
@@ -163,35 +188,47 @@
             </dependency>
          </dependencies>
          <build>
-            <finalName>${project.name}</finalName>
-            <resources>
-               <resource>
-                  <directory>src/main/release</directory>
-                  <filtering>true</filtering>
-               </resource>
-            </resources>
             <plugins>
                <plugin>
                   <groupId>org.apache.maven.plugins</groupId>
-                  <artifactId>maven-war-plugin</artifactId>
+                  <artifactId>maven-resources-plugin</artifactId>
+                  <version>2.7</version>
                   <configuration>
-                     <outputDirectory>C:\wildfly-12.0.0.Final\standalone\deployments\</outputDirectory>
-                     <failOnMissingWebXml>false</failOnMissingWebXml>
+                     <delimiters>
+                        <delimiter>@</delimiter>
+                     </delimiters>
+                     <useDefaultDelimiters>false</useDefaultDelimiters>
                   </configuration>
                </plugin>
                <plugin>
-                  <groupId>org.springframework.boot</groupId>
-                  <artifactId>spring-boot-maven-plugin</artifactId>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-jar-plugin</artifactId>
                   <configuration>
-                     <skipTests>true</skipTests>
-                     <layout>WAR</layout>
-                     <executable>true</executable>
-                     <mainClass>com.blastfurnace.otr.Application</mainClass>
+                     <!-- DO NOT include log4j.properties file in your Jar -->
+                     <excludes>
+                        <exclude>**com/blastfurnace/otr/Application.class*</exclude>
+                        <exclude>**/resources/*</exclude>
+                        <exclude>**/lib/*</exclude>
+                        <exclude>**application.properties*</exclude>
+                        <exclude>**pom.properties*</exclude>
+                        <exclude>**pom.xml*</exclude>
+                     </excludes>
+                     <archive>
+                        <manifest>
+                           <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                           <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                        </manifest>
+                     </archive>
                   </configuration>
                   <executions>
                      <execution>
+                        <id>Jar Tests Package</id>
+                        <configuration>
+                           <classifier>test</classifier>
+                        </configuration>
+                        <phase>package</phase>
                         <goals>
-                           <goal>repackage</goal>
+                           <goal>test-jar</goal>
                         </goals>
                      </execution>
                   </executions>
