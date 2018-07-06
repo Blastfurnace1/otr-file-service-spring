@@ -71,7 +71,7 @@
    </properties>
    <profiles>
        <profile>
-         <id>dev</id>
+         <id>test</id>
          <activation>
             <activeByDefault>false</activeByDefault>
          </activation>
