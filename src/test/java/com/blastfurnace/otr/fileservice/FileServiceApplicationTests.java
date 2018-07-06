@@ -15,23 +15,15 @@
  */
 package com.blastfurnace.otr.fileservice;
 
-import java.util.Map;
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.web.client.TestRestTemplate;
-import org.springframework.boot.web.server.LocalServerPort;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
+import com.blastfurnace.otr.AppConfigTest;
 
 import static org.assertj.core.api.BDDAssertions.then;
 import static org.junit.Assert.assertTrue;
@@ -41,53 +33,15 @@ import static org.junit.Assert.assertTrue;
  *
  * @author Jim Blackson
  */
-@RunWith(SpringRunner.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@ContextConfiguration
-@TestPropertySource(properties = {"management.port=9001", "test.server="})
-public class FileServiceApplicationTests {
-
-	@LocalServerPort
-	private int port;
-
-	@Value("${local.management.port}")
-	private int mgt;
-
-	@Autowired
-	private TestRestTemplate testRestTemplate;
+public class FileServiceApplicationTests extends AppConfigTest {
 	
-	private String testServer = "http://localhost:";
-	
+	private static final Logger log = LoggerFactory.getLogger(FileServiceApplicationTests.class); 
+
 	@Test
-	public void shouldReturn200WhenSendingRequestToManagementEndpoint() throws Exception {
-		@SuppressWarnings("rawtypes")
-		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
-				testServer + this.mgt + "/actuator/info", Map.class);
+	public void shouldPerformEpisodeServiceTests() throws Exception {
+		log.info("File Service Tests - Start");
 
-		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-	}
-	
-	@Test
-	public void WhenSendingGetRequestToControllerReponseObject() throws Exception {
-		
-//		@SuppressWarnings("rawtypes")
-//		ResponseEntity<Map> entity = this.testRestTemplate.getForEntity(
-//				"http://localhost:" + this.port + "/rest/get/3", Map.class);
-//
-//		then(entity.getStatusCode()).isEqualTo(HttpStatus.OK);
-//		
-//		HttpHeaders httpHeaders = this.testRestTemplate
-//				  .headForHeaders("http://localhost:" + this.port + "/rest/get/3");
-//		
-//		assertTrue(httpHeaders.getContentType()
-//				  .includes(MediaType.APPLICATION_JSON));
-//		
-//		AudioFileProperties audio = this.testRestTemplate.getForObject(
-//				"http://localhost:" + this.port + "/rest/get/3", AudioFileProperties.class);
-//
-//		then(entity).isNotNull();
-//		then(audio.getId()).isEqualTo(3);
-//		then(audio.getFilename()).isNotNull();
+		log.info("File Service Tests - End");
 	}
 	
 }
